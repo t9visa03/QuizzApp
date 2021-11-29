@@ -1,2 +1,2 @@
 # QuizzApp
-Mobiiliprojekti
+Mobiiliprojekti 2021, Ryhmä12
