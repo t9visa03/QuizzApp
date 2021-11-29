@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
-    // setting up things
+    
     private Button falseButton;
     private Button trueButton;
     private ImageButton nextButton;
@@ -23,13 +23,13 @@ public class MainActivity extends AppCompatActivity
     private ImageView Image;
     private TextView questionTextView;
     private int correct = 0;
-    // to keep current question track
+    
     private int currentQuestionIndex = 0;
 
     private Question[] questionBank = new Question[] {
-            // array of objects of class Question
-            // providing questions from string
-            // resource and the correct ans
+            
+            
+            // oikeat vastaukset
             new Question(R.string.a, true),
             new Question(R.string.b, false),
             new Question(R.string.c, true),
@@ -44,14 +44,12 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // setting up the buttons
-        // associated with id
+        
         falseButton = findViewById(R.id.false_button);
         trueButton = findViewById(R.id.true_button);
         nextButton = findViewById(R.id.next_button);
         prevButton = findViewById(R.id.prev_button);
-        // register our buttons to listen to
-        // click events
+        //events
         questionTextView
                 = findViewById(R.id.answer_text_view);
         Image = findViewById(R.id.myimage);
@@ -66,9 +64,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View v)
     {
-        // checking which button is
-        // clicked by user
-        // in this case user choose false
+        // tarkistaa mikä nappi on painettuna
+        //tässä valittuna 'false' 
         switch (v.getId()) {
             case R.id.false_button:
                 checkAnswer(false);
@@ -79,15 +76,14 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.next_button:
-                // go to next question
-                // limiting question bank range
+                // seuraavaan kysymykseen
+                
                 if (currentQuestionIndex < 7) {
                     currentQuestionIndex
                             = currentQuestionIndex + 1;
-                    // we are safe now!
-                    // last question reached
-                    // making buttons
-                    // invisible
+                    
+                    // nappulat pois näkyvistä
+                    
                     if (currentQuestionIndex == 6) {
                         questionTextView.setText(getString(
                                 R.string.correct, correct));
@@ -105,11 +101,11 @@ public class MainActivity extends AppCompatActivity
                                     "CORRECTNESS IS " + correct
                                             + " "
                                             + "OUT OF 6");
-                            // showing correctness
+                            // näytetään pisteet
                         else
                             Image.setImageResource(
                                     R.drawable.mainpicture);
-                        // if correctness<3 showing sad emoji
+                        // jos pisteet <3 näytetään peukku alas
                     }
                     else {
                         updateQuestion();
@@ -168,18 +164,16 @@ public class MainActivity extends AppCompatActivity
         boolean answerIsTrue
                 = questionBank[currentQuestionIndex]
                 .isAnswerTrue();
-        // getting correct ans of current question
+        // hakee oikean vastauksen tietylle kysymykselle
         int toastMessageId;
-        // if ans matches with the
-        // button clicked
+        // jos vastaus vastaa painettua nappia
 
         if (userChooseCorrect == answerIsTrue) {
             toastMessageId = R.string.correct_answer;
             correct++;
         }
         else {
-            // showing toast
-            // message correct
+            
             toastMessageId = R.string.wrong_answer;
         }
 
